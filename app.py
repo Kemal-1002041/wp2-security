@@ -9,6 +9,7 @@ from Adminmodel import Adminpanel, AddTeacher
 import math
 from urllib.parse import urlparse
 import config
+import time
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'HOI'
@@ -28,11 +29,19 @@ app.jinja_env.filters['is_valid_url'] = is_valid_url
 
 @app.before_request
 def sessions():
-    free_routes = ["login"]
+    free_routes = ["login", "signup", "forgot_password"]
     user = session.get("user")
+    is_admin = session.get("is_admin") 
+    
     if not user and request.endpoint not in free_routes and request.endpoint != 'static':
         return redirect(url_for("login"))
+    if request.endpoint.startswith('admin') and not is_admin:
+        return redirect(url_for("unauthorized")) 
 
+
+
+MAX_LOGIN_ATTEMPTS = 5
+BLOCK_DURATION = 3600
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -40,6 +49,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        
+        login_attempts = session.get('login_attempts', 0)
+        blocked_until = session.get('blocked_until')
+
+        if blocked_until and time.time() < blocked_until:
+            error = f'Too many failed login attempts. Please try again in {int((blocked_until - time.time()) / 60)} minutes.'
+            return render_template('login.html', error=error)
 
         if not username or not password:
             error = 'Username and password are required!'
@@ -49,10 +65,18 @@ def login():
 
             if user and bcrypt.check_password_hash(user['teacher_password'], password):
                 session["user"] = (user['teacher_id'], user['is_admin'])
+                session.pop('login_attempts', None) 
                 return redirect(url_for('notes_list'))
             else:
                 error = 'Incorrect username or password!'
+                session['login_attempts'] = login_attempts + 1
+
+                if session['login_attempts'] >= MAX_LOGIN_ATTEMPTS:
+                    session['blocked_until'] = time.time() + BLOCK_DURATION
+                    error = 'Too many failed login attempts. Please try again later.'
+
     return render_template('login.html', error=error)
+
 
 
 @app.route("/logout")
