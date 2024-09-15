@@ -1,0 +1,1 @@
+api_key = ""  # Put here the api key to ChatGPT and add this file to .gitignore!

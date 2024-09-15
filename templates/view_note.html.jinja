@@ -1,0 +1,63 @@
+{% extends 'base_template.html.jinja' %}
+
+{% block title %}
+Mijn notitie
+{% endblock %}
+
+{% block additional_navbuttons %}
+<button class="button back" type="button" onclick="location.href='/notes_list'">Terug naar overzicht</button>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="note-content">
+        <h1>{{ note.title }}</h1>
+        <div class="note-text">
+        <p>{{ note.note }}</p>
+    </div>
+</div>
+
+
+<div class="note-info">
+        <h4>Docent</h4>
+        <p>{{ note.display_name }}</p>
+        <h4>Aangemaakt op</h4>
+        <p>{{  note.date_created}}</p>
+<h4>Bron</h4>
+{% if note.note_source %}
+    {% if note.note_source|is_valid_url %}
+        <a href="{{ note.note_source }}" target="_blank">{{ note.note_source }}</a>
+    {% else %}
+        {{ note.note_source }}
+    {% endif %}
+{% else %}
+    N/A
+{% endif %}
+
+        <h4>Openbaar</h4>
+        <p>{% if note.is_public %}Ja{% else %}Nee{% endif %}</p>
+</div>
+</div>
+
+    <div class="note-buttons">
+        <a href="/change_note/{{ note.note_id }}"><button class="button edit" type="button">Bewerken</button></a>
+        <a href="/delete_note/{{ note.note_id }}"><button class="button delete" type="button">Verwijder</button></a>
+        <a href="/generate_open_question/{{ note.note_id }}"><button class="button generate" type="button">Open vraag</button></a>
+        <a href="/generate_mc_question/{{ note.note_id }}"><button class="button generate" type="button">Multiple choice vraag</button></a>
+    </div>
+    {% if questions != None %}
+    <div class="question_content">
+        <h2>Vragen</h2>
+    {% for question in questions %}
+        <div class="open_question">
+            {{ question[1] }}
+        </div>
+    </div>
+    <a href="/change_question/{{ question[0] }}"><button class="button edit" type="button">Bewerken</button></a>
+    <a href="/delete_question/{{ question[0] }}"><button class="button delete" type="button">Verwijder</button></a>
+    {% endfor %}
+{% endif %}
+    {% endblock %}
+</body>
+</html>

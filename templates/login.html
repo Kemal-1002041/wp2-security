@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Pagina</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            color: #233A85;-->
+<!--            background-color: #F0F2F5;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        form {-->
+<!--            background-color: white;-->
+<!--            padding: 30px;-->
+<!--            margin-left: 50px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            text-align: center;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        div {-->
+<!--            margin-bottom: 15px;-->
+<!--        }-->
+
+<!--        label {-->
+<!--            display: block;-->
+<!--            margin-bottom: 5px;-->
+<!--        }-->
+
+<!--        input[type="username"], input[type="password"] {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            border: 1px solid #C3D0ED;-->
+<!--            background-color: #F9FAFF;-->
+<!--            border-radius: 10px;-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
+
+<!--        button {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            border: none;-->
+<!--            border-radius: 10px;-->
+<!--            background-color: #3DBB56;-->
+<!--            color: white;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            border: none;-->
+<!--            border-radius: 10px;-->
+<!--            background-image: linear-gradient(to right, #066D1B , #3DBB56);-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            color: white;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            background-color: #4b5481;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body class="body">
+<div class="login-logo">
+    <img class="img" src = "/static/testcorrect-logo.svg" alt="Test Correct Logo"/>
+</div>
+<div class="login-container">
+    <form action="/" method="post">
+        <div class="username">
+            <label class="label" for="username">Gebruikersnaam</label><br>
+            <input type="username" id="username" name="username">
+        </div>
+        <div class="password">
+            <label class="label" for="password">Wachtwoord</label><br>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <a href="/notes_list"><button class="button login" type="submit">Inloggen</button></a>
+        </div>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>

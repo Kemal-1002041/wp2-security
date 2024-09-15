@@ -1,0 +1,83 @@
+{% extends 'base_template.html.jinja' %}
+
+{% block title %}
+Mijn notitie wijzigen
+{% endblock %}
+
+{% block additional_navbuttons %}
+<button class="button back" type="button" onclick="location.href='/notes_list'">Terug naar overzicht</button>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="note-edit">
+            <form id="notes-form change" action="#" method="post">
+            <h1 id="form-title">Wijzig notitie</h1>
+            <p>Vul alleen in wat gewijzigd moet worden!</p>
+
+            <!-- Text field to give the note a title -->
+            <div class="questions title">
+                <label id="title-label" for="title-ans">
+                    Titel <br>
+                    <input class="input-form" type="text" id="title-ans" name="title" value="{{ old_note[1] }}">
+                </label>
+            </div>
+
+            <!-- Text field to reference the source of the note -->
+            <div class="questions source">
+                <label id="source-label" for="source-ans">
+                    Bron <br>
+                    <input class="input-form" type="text" id="source-ans" name="source" value="{{ old_note[2] }}">
+                </label>
+            </div>
+
+            <!-- Drop down option box to assign a category to the note -->
+            <div class="questions category">
+                <label id="cat-label" for="cat-ans">
+                    Categorie:
+                    <select id="cat-ans" name="category">
+                        <option value="{{ old_note[5] }}">Selecteer</option>
+                        {% for category in categories %}
+                        <option value="{{ category[0] }}"> {{ category[1] }} </option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <!-- Radio buttons to choose between either making the note public or private -->
+            <div class="questions public">
+                <label id="public-label" for="public-ans">
+                    Openbaar:
+                    <input type="radio" id="public-ans" value="1" name="public" required>
+                    <label id="public-ans-ja" for="public-ans">
+                        Ja
+                    </label>
+                    <input type="radio" id="public-ans" value="0" name="public">
+                    <label id="public-ans-nee" for="public-ans">
+                        Nee
+                    </label>
+                </label>
+            </div>
+
+            <!-- Text field to write the note -->
+            <div class="questions note">
+                <label id="note" for="note-ans">
+                    Notitie: <br>
+                    <input type="text" class="textarea" id="note-ans" for="note-ans" name="note" value="{{ old_note[6] }}">
+                </label>
+            </div>
+
+            <!-- Reset and submit button -->
+            <div class="form-buttons">
+                <a href="/notes_list"><input class="button save" id="submit" type="submit" value="Opslaan"></a>
+                <input class="button again" id="reset" type="reset" value="Opnieuw">
+            </div>
+        </form>
+        </div>
+</div>
+    {% endblock %}
+        <!-- Form to create a new note -->
+<!-- (HTML style guide and coding conventions, z.d.) -->
+    </body>
+</html>

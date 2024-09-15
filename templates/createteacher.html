@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docent toevoegen</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="body">
+<div class="nav">
+    <div class="logo">
+        <img src = "/static/testcorrect-logo.svg" alt="Test Correct Logo"/>
+    </div>
+    <div class="nav-buttons">
+            <button class="button new form" type="button" onclick="location.href='/notes_list'"> Home</button>
+            <button class="button new form" type="button" onclick="location.href='/adminpanel'">Terug</button>
+    </div>
+</div>
+<div class="menu">
+    <div class="searchbar">
+        <b> Zoek op titel of inhoud</b> <br>        <!--<form id="form">-->
+            <label for="query"></label><input type="search" id="query" name="query" placeholder="Notities doorzoeken">
+            <button class="button search" type="button">Zoeken</button>
+</head>
+<body>
+    <h1>docent toevoegen</h1>
+
+    <form method="post" action="{{ url_for('create_teacher') }}">
+        <label for="display_name">Display Name:</label>
+        <input type="text" name="display_name" required>
+        <br>
+
+        <label for="teacher_password">Wachtwoord</label>
+        <input type="password" name="teacher_password" required>
+        <br>
+
+        <label for="username">User name:</label>
+        <input type="text" name="username" required>
+        <br>
+
+        <label for="is_admin">Is Admin:</label>
+        <input type="number" name="is_admin" value="1">
+        <br>
+
+        <button type="submit">Create Teacher</button>
+    </form>
+</body>
+</html>

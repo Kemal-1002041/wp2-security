@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="body">
+<div class="nav">
+    <div class="logo">
+        <img src = "/static/testcorrect-logo.svg" alt="Test Correct Logo"/>
+    </div>
+    <div class="nav-buttons">
+        <button class="button new form" type="button" onclick="location.href='/notes_list'">Home</button>
+        <button class="button new form" type="button" onclick="location.href='/createteacher'">Docent toevoegen</button>
+    </div>
+    
+</div>
+<div class="menu">
+    <div class="searchbar">
+        <b> Zoek op titel of inhoud</b> <br>        <!--<form id="form">-->
+            <label for="query"></label><input type="search" id="query" name="query" placeholder="Notities doorzoeken">
+            <button class="button search" type="button">Zoeken</button>
+        <!--</form>-->
+        <br>
+        <br>
+    </div>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    
+        th {
+            background-color: #808080;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Naam</th>
+                <th>Gebruikersnaam</th>
+                <th>Aangemaakt op</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category['teacher_id'] }}</td>
+                <td>{{ category['display_name'] }}</td>
+                <td>{{ category['username'] }}</td>
+                <td>{{ category['date_created'] }}</td>
+                {% if category['is_admin'] == 1%}
+                    <td>Ja</td>
+                {% endif %}
+                {% if category['is_admin'] == 0 %}
+                    <td>Nee</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+            </tbody>
+    </table>
+
+</body>
+</html>

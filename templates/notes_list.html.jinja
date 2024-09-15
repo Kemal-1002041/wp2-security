@@ -1,0 +1,105 @@
+{% extends 'base_template.html.jinja' %}
+
+{% block title %}
+Mijn notities
+{% endblock %}
+
+{% block additional_navbuttons %}
+<button class="button new form" type="button" onclick="location.href='/notes_form'">Nieuwe notitie</button>
+<button class="button new category" type="button" onclick="location.href='/create_category'">Nieuwe categorie</button>
+<button class="button export" onclick="window.location.href='/export_notes_csv'">Exporteer naar csv</button>
+{% if admin == 1 %}
+    <a href="/adminpanel"><button class="button admin">Admin</button></a>
+{% endif %}    
+{% endblock %}
+
+{% block content %}
+<div class="menu">
+    <div class="search-and-filter">
+        <div class="searchbar">
+            <form id="search-form" action="#" method="post">
+                <label for="query"></label><input type="search" id="query" name="query" placeholder="Notities doorzoeken">
+                <input type="submit" class="button search" value="Zoeken">
+            </form>
+        </div>
+        <form id="filter-form" action="#" method="post">
+            <div class="filter-options">
+                <input class="checkbox" type="checkbox" id="all-teachers" name="all_teachers" value="1">
+                <label class="label" for="all-teachers">Alle docenten</label><br>
+                <input class="checkbox" type="checkbox" id="with-questions" name="with_questions" value="1">
+                <label class="label" for="with-questions">Met vragen</label><br>
+            </div>
+            <div class="categories">
+                <label class="label" for="categories">Categorie</label> <br>
+                <select name="categories" id="categories">
+                    <option value="all">Alle categorieën</option>
+                    {% for category in categories %}
+                    <option value="{{ category[0] }}"> {{ category[1] }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+             <div class="filter-buttons">
+                <input type="submit" class="button filter" value="Filter">
+                <button class="button reset" type="submit" name="reset_filters" value="1">Reset filters</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div class="notes-table">
+<table>
+    <thead>
+        <tr>
+            <th>Notitie</th>
+            <th>Categorie</th>
+            <th>Docent</th>
+            <th>Openbaar</th>
+            <th>Met vragen</th>
+            <th>Aangemaakt op</th>
+        </tr>
+    </thead>
+<tbody>
+    {% set ns = namespace(total=0) %}
+    {% for note in notes %}
+        {% set ns.total = ns.total + 1 %}
+        <tr>
+            <td>
+                {% if note.title %}
+                    <a href="/view_note/{{ note.note_id }}">{{ note.title }}</a>
+                {% else %}
+                    <a href="/view_note/{{ note.note_id }}">Notitie ID: {{ note.note_id }}</a>
+                {% endif %}
+            </td>
+            <td>{{ note.omschrijving }}</td>
+            <td>{{ note.display_name }}</td>
+            <td>{% if note.is_public %}Ja{% else %}Nee{% endif %}</td>
+            <td>{% if note.with_questions > 0 %}Ja{% else %}Nee{% endif %}</td>
+            <td>{{ note.date_created }}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+
+<b>Aantal notities: {{ total_notes }} </b>
+
+</table>
+</div>
+
+<div class="pagination">
+    {% if current_page > 1 %}
+        <a href="{{ url_for('notes_list', page=current_page-1, query=search_query, all_teachers=all_teachers, category=category) }}">Vorige</a>
+    {% endif %}
+
+    {% if current_page < total_pages %}
+        <a href="{{ url_for('notes_list', page=current_page+1, query=search_query, all_teachers=all_teachers, category=category) }}">Volgende</a>
+    {% endif %}
+</div>
+
+<div class="page-info">
+    Pagina {{ current_page }} van {{ total_pages }}
+</div>
+{% endblock %}
+
+
+</body>
+</html>

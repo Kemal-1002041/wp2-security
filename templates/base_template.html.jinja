@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Your App Name{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="body">
+    <div class="nav">
+        <div class="logo">
+            <img src="/static/testcorrect-logo.svg" alt="App Logo"/>
+        </div>
+        <div class="nav-buttons">
+            {% block additional_navbuttons %}
+            <!-- Additional buttons specific to each page can be added here -->
+            {% endblock %}
+            <!-- Default buttons -->
+            <a href="/logout"><button class="button logout">Uitloggen</button></a>
+        </div>
+    </div>
+
+    {% block content %}
+    <!-- Main content will be inserted here -->
+    {% endblock %}
+
+</body>
+</html>

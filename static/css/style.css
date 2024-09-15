@@ -1,0 +1,267 @@
+.button {
+  border: white;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  min-height: 40px;
+  padding-left: 17px;
+  padding-right: 17px;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+  width: auto;
+}
+
+.csv {background-color: #3DBB56;}
+.new {background-color: #3DBB56;}
+.filter {background-color: #004DF5}
+.reset {background-color: #004DF5}
+.search {background-color: #004DF5}
+.edit {background-color: #3DBB56;}
+.delete{background-color: #004DF5}
+.back {background-color: #3DBB56}
+.logout {background-color: #004DF5}
+.login {background-color: #3DBB56}
+.save {background-color: #3DBB56}
+.again {background-color: #004DF5}
+.generate {background-color: #3DBB56}
+.export {background-color: #3DBB56}
+.admin {background-color: #004DF5}
+
+.nav, .menu {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.nav {
+  background-color: white;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  font-size: 18px;
+  font-weight: 700;
+  height:70px;
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.menu {
+  background-image: linear-gradient(to right, rgba(0, 77, 245, 0.68) 0%, #4781ff 70%);
+  box-shadow: 0 3px 8px 0 rgba(4, 31, 116, .3);
+  font-size: 18px;
+  font-weight: 700;
+  height: 100px;
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.search-and-filter {
+  display: flex;
+  align-items: center;
+
+}
+
+.filter-options,
+.categories,
+.filter-buttons {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.searchbar {
+  padding-right: 10px;
+  margin-right: 30px;
+
+}
+
+.filter-buttons {
+  margin-left: 30px;
+  float:right;
+}
+
+.notes-table {
+  color: #041f74;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.notes-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notes-table thead tr {
+  background-color: #d0d0d0;
+  color: #041f74;
+  text-align: left;
+}
+
+.notes-table th, .notes-table td {
+  padding: 15px;
+  text-align: left;
+}
+
+.notes-table th:nth-child(1) { width: 20%; }
+.notes-table th:nth-child(2) { width: 10%; }
+
+
+
+
+.page-info {
+  text-align: right;
+  margin-left: 888px;
+}
+.checkbox {
+  color: #041f74;
+}
+
+.label {
+  color: #041f74;
+}
+
+.body {
+  background-color: #f0f2f5 ;
+  font-family: Nunito,sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container {
+  width: 1200px;
+  height: 500px;
+  margin-top: 10px;
+  display: inline-flex;
+  overflow-wrap: break-word;
+}
+
+.note-edit {
+  color: #041f74;
+  background-color: white;
+  border: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  text-align: left;
+  padding: 20px;
+  width: 100%;
+  margin-right: 10px;
+  display: inline-block;
+  height: 100%;
+}
+
+.input-form {
+  width: 30%;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+.textarea {
+  width: 800px;
+  height: 200px;
+  resize: none;
+}
+
+.note-content {
+  color: #041f74;
+  background-color: white;
+  border: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  text-align: left;
+  padding: 10px;
+  width: 890px;
+  margin-right: 10px;
+  display: inline-block;
+  height: 100%;
+}
+
+.note-info {
+  color: #041f74;
+  background-color: rgba(71, 129, 255, 0.78);
+  border: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  text-align: left;
+  padding: 10px;
+  width: 300px;
+  display: inline-block;
+  height:100%;
+}
+
+.note-buttons {
+  margin-top: -30px;
+  margin-left: 10px;
+}
+
+.login-logo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+
+.img {
+  width: 300px;
+  margin-top: 200px;
+}
+
+.login-container {
+  height: 300px;
+  width: 400px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 3px 8px 0 rgba(4,31,116,.3);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: auto;
+}
+
+.username {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.password {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
